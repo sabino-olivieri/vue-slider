@@ -1,10 +1,10 @@
-const {createApp} = Vue;
+const { createApp } = Vue;
 
 createApp({
     data() {
         return {
 
-            images : [
+            images: [
                 {
                     image: "img/01.webp",
                     title: "Marvel's Spiderman Miles Morale",
@@ -32,25 +32,75 @@ createApp({
                 },
             ],
 
-            currentIndex : 0,
+            currentIndex: 0,
+            timeNext: false,
+            timePrev: false
 
         }
     },
 
+    created() {
+        this.autoPlay();
+    },
+
     methods: {
 
-        nextImage: function() {
+        nextImage: function () {
             console.log(this.currentIndex);
             this.currentIndex = (this.currentIndex === this.images.length - 1) ? 0 : this.currentIndex + 1;
         },
 
-        prevImage: function() {
+        prevImage: function () {
             console.log(this.currentIndex);
             this.currentIndex = (this.currentIndex === 0) ? this.images.length - 1 : this.currentIndex - 1;
+        },
+
+        autoPlay: function () {
+            this.timeNext = setInterval(this.nextImage, 3000);
+        },
+
+        playPause: function () {
+
+            if (this.timeNext != false) {
+
+                this.resetTime();
+
+            } else if (this.timePrev != false) {
+
+                this.resetTime();
+
+            } else {
+                this.autoPlay();
+            }
+        },
+
+        reversePlay: function () {
+            if (this.timeNext != false) {
+
+                this.resetTime();
+                this.timePrev = setInterval(this.prevImage, 3000);
+                
+            } else if (this.timePrev != false) {
+
+                this.resetTime();
+                this.autoPlay();
+            }
+        },
+
+        resetTime: function () {
+
+            if (this.timeNext != false) {
+
+                clearInterval(this.timeNext);
+                this.timeNext = false;
+
+            } else if (this.timePrev != false) {
+                clearInterval(this.timePrev);
+                this.timePrev = false;
+            }
         }
 
     }
-
 }).mount("#app")
 
 
