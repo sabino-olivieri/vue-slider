@@ -39,6 +39,18 @@ createApp({
 
     methods: {
 
+        nextImage: function() {
+            console.log(this.currentIndex);
+            this.currentIndex = (this.currentIndex === this.images.length - 1) ? 0 : this.currentIndex + 1;
+        },
+
+        prevImage: function() {
+            console.log(this.currentIndex);
+            this.currentIndex = (this.currentIndex === 0) ? this.images.length - 1 : this.currentIndex - 1;
+        }
+
     }
 
 }).mount("#app")
+
+

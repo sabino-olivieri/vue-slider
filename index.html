@@ -66,12 +66,12 @@
               <div class="my-thumbnails position-relative">
 
                 <!-- prev -->
-                <div class="my-previous position-absolute">
+                <div class="my-previous position-absolute" @click="prevImage">
                   <span class="my-prev-hook"></span>
                 </div>
 
                 <!-- next -->
-                <div class="my-next position-absolute">
+                <div class="my-next position-absolute" @click="nextImage">
                   <span class="my-next-hook"></span>
                 </div>
                 
@@ -80,6 +80,7 @@
                   class="img-fluid my-thumbnail" :class="currentIndex === index ? 'active' : ''"
                   :src="element.image"
                   :alt="element.title + ' picture'"
+                  @click="currentIndex = index"
                 />
                 <!-- <img
                   class="img-fluid my-thumbnail"
