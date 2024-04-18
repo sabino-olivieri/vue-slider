@@ -35,7 +35,7 @@
   </head>
   <body>
     <main>
-      <div class="container-fluid p-5">
+      <div class="container-fluid p-5" id="app">
         <div class="row text-center">
           <div class="col-12 p-3" id="my-before-carousel"></div>
 
@@ -47,21 +47,19 @@
               <div class="my-carousel-images">
                 <!-- immagini -->
                 <!-- immagine 1 -->
-                <!-- <div class="my-carousel-item active" carousel-item="1">
+                <div v-for="(element, index) in images" class="my-carousel-item" :class="currentIndex === index ? 'active' : ''" carousel-item="1">
                   <img
                     class="img-fluid"
-                    src="./img/01.webp"
-                    alt="Marvel's Spiderman Miles Morale picture"
+                    :src="element.image"
+                    :alt="element.title"
                   />
                   <div class="item-description px-3">
-                    <h2>Marvel's Spiderman Miles Morale</h2>
+                    <h2>{{ element.title }}</h2>
                     <p>
-                      Experience the rise of Miles Morales as the new hero
-                      masters incredible, explosive new powers to become his own
-                      Spider-Man.
-                    </p>
+                      {{ element.text }}
+                    </p>  
                   </div>
-                </div> -->
+                </div>
                 <!-- /immagine 1 -->
               </div>
 
@@ -78,12 +76,12 @@
                 </div>
                 
                 <!-- immagini interne -->
-                <!-- <img
-                  class="img-fluid my-thumbnail active"
-                  src="./img/01.webp"
-                  alt="Thumbnail of Marvel's Spiderman Miles Morale picture"
+                <img v-for="(element, index) in images"
+                  class="img-fluid my-thumbnail" :class="currentIndex === index ? 'active' : ''"
+                  :src="element.image"
+                  :alt="element.title + ' picture'"
                 />
-                <img
+                <!-- <img
                   class="img-fluid my-thumbnail"
                   src="./img/02.webp"
                   alt="Thumbnail of Ratchet & Clank: Rift Apart picture"
